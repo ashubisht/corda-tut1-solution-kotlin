@@ -61,6 +61,7 @@ dependencies {
     // CorDapp dependencies.
     cordapp project(":cordapp")
     cordapp project(":cordapp-contracts-states")
+    cordapp project(":cordapp-upgraded-contracts")
 
     cordaCompile "org.apache.logging.log4j:log4j-slf4j-impl:${log4j_version}"
     cordaCompile "org.apache.logging.log4j:log4j-web:${log4j_version}"
@@ -117,4 +118,18 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         ]
         rpcUsers = [[ user: "user1", "password": "test", "permissions": ["ALL"]]]
     }
+}
+
+task runUpgradeContractStateClient(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.template.UpgraderKt'
+    //args = ["localhost:10006"]
+    systemProperty "nodeAddress", "localhost:10006,localhost:10009"
+}
+
+task runUpgradeAcceptor(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.template.AcceptorKt'
+    //args = ["localhost:10006"]
+    systemProperty "nodeAddress", "localhost:10006"
 }
