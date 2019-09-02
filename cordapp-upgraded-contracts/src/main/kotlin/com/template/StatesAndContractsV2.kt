@@ -12,7 +12,7 @@ import net.corda.core.identity.Party
 class TemplateContractV2 : Contract, UpgradedContractWithLegacyConstraint<IOUState, IOUState> {
     override val legacyContract: ContractClassName = TemplateContract.ID
     override val legacyContractConstraint: AttachmentConstraint
-        get() = HashAttachmentConstraint(SecureHash.parse("C68F40B712D9F817417EF2E79357E9929EC6661BF757653591687AFF2E6D762A"))
+        get() = HashAttachmentConstraint(SecureHash.parse("5c8bf104e14b8806bbd14c96e0dc572e0ea27c57341114777eb52d13967bb369"))
 
     override fun upgrade(state: IOUState) = IOUState(state.value, state.lender, state.borrower)
 
