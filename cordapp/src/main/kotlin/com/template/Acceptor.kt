@@ -25,7 +25,7 @@ class Acceptor {
         }
 
         val allStates = mutableMapOf<Class<out ContractState>, Class<out Contract>>(
-                IOUState::class.java to TemplateContract::class.java
+                IOUState::class.java to TemplateContractV2::class.java
         )
 
         val generalCriteria = QueryCriteria.VaultQueryCriteria(Vault.StateStatus.UNCONSUMED)
